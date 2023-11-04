@@ -82,6 +82,7 @@ function showQuestionAndOptions() {
         var optionBtn = document.createElement("button");
         optionBtn.textContent = option;
         optionBtn.classList.add("optBtn");
+        optionBtn.setAttribute("style", "width: 100%; text-align: left;");
         choices.append(optionBtn);
     }
 }
@@ -118,7 +119,7 @@ function showIncorrectVerdict() {
     paraEl.textContent = "Wrong!";
     paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
     deductTime();
-
+    
     setTimeout(function() {
         paraEl.textContent = "";
     }, 500);
@@ -131,15 +132,24 @@ function deductTime() {
 
 function endGame() {
     if (timeLeft <= 0) {
-        finalScore.textContent = localStorage.getItem("Time's Up");
+        finalScore.textContent = timeLeft;
     } else {
-        finalScore.textContent = localStorage.getItem("Seconds Remaining");
+        finalScore.textContent = timeLeft;
     }
     submitBtn.addEventListener('click', function() {
-        initials = localStorage.setItem("Initials", initials.value);
-        remainingSeconds = localStorage.setItem("Seconds Remaining", timeLeft);
-        window.location.href = "./highscores.html";
-        console.log(initials);
-    })
+        initials = initials.value.trim();
+        if (initials !== "") {
+            addScoreToLocalStorage(initials, timeLeft);
+            window.location.href = "./highscores.html";
+        } else {
+            alert("Please enter your initials.");
+        }
+    });
 }
 
+function addScoreToLocalStorage(initials, remainingSeconds) {
+    var highscoresArray = JSON.parse(localStorage.getItem("highscores")) || [];
+    var newScore = { initials: initials, remainingSeconds: remainingSeconds };
+    highscoresArray.push(newScore);
+    localStorage.setItem("highscores", JSON.stringify(highscoresArray));
+}
