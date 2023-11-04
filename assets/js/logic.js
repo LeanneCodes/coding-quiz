@@ -17,6 +17,7 @@ var questionDiv = document.getElementById('questions');
 var question = document.getElementById('question-title');
 var choices = document.getElementById('choices');
 var optionBtns = document.querySelectorAll(".optBtn");
+var paraEl = document.createElement("p");
 
 // 1. a start button that when clicked, a timer starts and the first question appears
 var timeLeft = 1200;
@@ -35,6 +36,7 @@ startBtn.addEventListener('click', function() {
 
         if (timeLeft === 0) {
             clearInterval(countdown);
+            localStorage.setItem("Time's Up", timeLeft);
             timer.textContent = "Time's Up!";
             window.location.href = "./highscores.html";
         }
@@ -77,25 +79,24 @@ function showQuestionAndOptions() {
         }
 
         currentQuestionIndex++;
-        if (currentQuestionIndex < multipleChoice.length) {
+        if (currentQuestionIndex <= multipleChoice.length) {
             showQuestionAndOptions();
         } else {
-            clearInterval(countdown);
+            localStorage.setItem("Seconds Remaining", timeLeft);
             timer.textContent = "Quiz Completed!";
+            window.location.href = "./highscores.html";
         }
     });
 }
 
 // 3. when an answer is clicked, text on the html page displays whether that answer was right or wrong
 function showCorrectVerdict() {
-    var paraEl = document.createElement("p");
     questionDiv.append(paraEl);
     paraEl.textContent = "Correct!";
     paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
 }
 
 function showIncorrectVerdict() {
-    var paraEl = document.createElement("p");
     questionDiv.append(paraEl);
     paraEl.textContent = "Wrong!";
     paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
@@ -106,3 +107,4 @@ function showIncorrectVerdict() {
 function deductTime() {
     timeLeft -= 10;
 };
+
