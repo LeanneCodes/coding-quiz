@@ -93,7 +93,6 @@ choices.addEventListener('click', function(event) {
     } else {
         console.log("Wrong!");
         showIncorrectVerdict();
-        deductTime();
     }
 
     currentQuestionIndex++;
