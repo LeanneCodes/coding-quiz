@@ -20,12 +20,12 @@ var optionBtns = document.querySelectorAll(".optBtn");
 var paraEl = document.createElement("p");
 var endScreen = document.getElementById("end-screen");
 var finalScore = document.getElementById("final-score");
-var initials = document.getElementById("initials");
 var submitBtn = document.getElementById("submit");
+var initials = document.getElementById("initials");
+var highscores = document.getElementById("highscores");
 
 // 1. a start button that when clicked, a timer starts and the first question appears
 var timeLeft = 1200;
-localStorage.clear();
 
 function countdown() {
     var countdownTimer = setInterval(function() {
@@ -124,6 +124,11 @@ function deductTime() {
 
 function endGame() {
     finalScore.textContent = localStorage.getItem("Seconds Remaining");
-    initials = localStorage.setItem("Initials", initials.value);
-    console.log(initials);
+    submitBtn.addEventListener('click', function() {
+        initials = localStorage.setItem("Initials", initials.value);
+        remainingSeconds = localStorage.setItem("Seconds Remaining", timeLeft);
+        window.location.href = "./highscores.html";
+        console.log(initials);
+    })
 }
+
