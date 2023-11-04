@@ -25,7 +25,7 @@ var initials = document.getElementById("initials");
 var highscores = document.getElementById("highscores");
 
 // 1. a start button that when clicked, a timer starts and the first question appears
-var timeLeft = 20;
+var timeLeft = 120;
 
 function countdown() {
     var countdownTimer = setInterval(function() {
@@ -108,6 +108,10 @@ function showCorrectVerdict() {
     questionDiv.append(paraEl);
     paraEl.textContent = "Correct!";
     paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
+
+    setTimeout(function() {
+        paraEl.textContent = "";
+    }, 500);
 }
 
 function showIncorrectVerdict() {
@@ -115,6 +119,10 @@ function showIncorrectVerdict() {
     paraEl.textContent = "Wrong!";
     paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
     deductTime();
+
+    setTimeout(function() {
+        paraEl.textContent = "";
+    }, 500);
 };
 
 // 4. if the answer is wrong, 10 seconds is deducted from the timer
