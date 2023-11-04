@@ -23,11 +23,8 @@ var endScreen = document.getElementById("end-screen");
 // 1. a start button that when clicked, a timer starts and the first question appears
 var timeLeft = 1200;
 
-startBtn.addEventListener('click', function() {
-    startScreen.textContent = '';
-    console.log(multipleChoice.length);
-    
-    var countdown = setInterval(function() {
+function countdown() {
+    var countdownTimer = setInterval(function() {
         timer.textContent = timeLeft + " seconds remaining";
         timeLeft--;
 
@@ -36,13 +33,28 @@ startBtn.addEventListener('click', function() {
         }
 
         if (timeLeft === 0) {
-            clearInterval(countdown);
+            clearInterval(countdownTimer);
             localStorage.setItem("Time's Up", timeLeft);
             timer.textContent = "Time's Up!";
             questionDiv.classList.add("hide");
             endScreen.classList.remove("hide");
         }
+
+        if (currentQuestionIndex === multipleChoice.length) {
+            clearInterval(countdownTimer);
+            localStorage.setItem("Seconds Remaining", timeLeft);
+            timer.textContent = "Quiz Completed!";
+            questionDiv.classList.add("hide");
+            endScreen.classList.remove("hide");
+        }
     }, 1000);
+}
+
+startBtn.addEventListener('click', function() {
+    startScreen.textContent = '';
+    console.log(multipleChoice.length);
+    
+    countdown();
 
     showQuestionAndOptions();
 
@@ -50,24 +62,6 @@ startBtn.addEventListener('click', function() {
 
 var currentQuestionIndex = 0;
 var answer;
-
-var multipleChoice = [
-    {
-        question: "JavaScript is the programming language of the _____.",
-        options: ["Desktop", "Mobile", "Web", "Server"],
-        answer: "Web"
-    },
-    {
-        question: "Question 2",
-        options: ["opt1", "opt2", "opt3", "opt4"],
-        answer: "opt2"
-    },
-    {
-        question: "Question 3",
-        options: ["Desktop", "Mobile", "Web", "Server"],
-        answer: "Web"
-    }
-]
 
 // 2a. each question contains buttons for each answer and when an option is clicked, the correct verdict is shown
 function showQuestionAndOptions() {
@@ -102,11 +96,6 @@ choices.addEventListener('click', function(event) {
 
     if (currentQuestionIndex < multipleChoice.length) {
         showQuestionAndOptions();
-    } else {
-        localStorage.setItem("Seconds Remaining", timeLeft);
-        timer.textContent = "Quiz Completed!";
-        questionDiv.classList.add("hide");
-        endScreen.classList.remove("hide");
     }
 });
 
