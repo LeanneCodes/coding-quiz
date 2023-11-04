@@ -23,8 +23,7 @@ var timeLeft = 120;
 startBtn.addEventListener('click', function() {
     startScreen.textContent = '';
     console.log(multipleChoice.length);
-    showQuestion();
-
+    
     var countdown = setInterval(function() {
         timer.textContent = timeLeft + " seconds remaining";
         timeLeft--;
@@ -40,6 +39,8 @@ startBtn.addEventListener('click', function() {
         }
     }, 1000);
 
+    showQuestion();
+
 });
 
 // 2. each question contains buttons for each answer
@@ -47,19 +48,17 @@ function showQuestion() {
     questionDiv.classList.remove("hide");
     var optionsList = document.createElement("ul");
     choices.append(optionsList);
-
-    var answerOptionsArray = Object.values(multipleChoice[0].options);
-    console.log(answerOptionsArray);
     
     for (var i = 0; i < multipleChoice.length; i++) {
-        for (var j = 0; j < 4; j++) {
-            console.log(answerOptionsArray[j]);
-            var option = answerOptionsArray[j];
-            var optionLi = document.createElement("li");
-            optionLi.textContent = option;
-            optionsList.append(optionLi);
-        }
         question.textContent = multipleChoice[i].question;
+        var answerOptions = Object.values(multipleChoice[i].options);
 
+        for (var j = 0; j < answerOptions.length; j++) {
+            console.log(answerOptions[j]);
+            var option = answerOptions[j];
+            var optionBtn = document.createElement("button");
+            optionBtn.textContent = option;
+            optionsList.append(optionBtn);
+        }
     }
 }
