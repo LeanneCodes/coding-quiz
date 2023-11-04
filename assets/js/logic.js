@@ -9,15 +9,22 @@
     7. the user can leave the game and come back and view their previous highscores
 */
 
-// 1. a start button that when clicked, a timer starts and the first question appears
+// declaring variables from html
 var startBtn = document.getElementById('start');
 var startScreen = document.getElementById('start-screen');
 var timer = document.getElementById('time');
+var questionDiv = document.getElementById('questions');
+var question = document.getElementById('question-title');
+var choices = document.getElementById('choices');
 
-var timeLeft = 10;
+// 1. a start button that when clicked, a timer starts and the first question appears
+var timeLeft = 120;
 
 startBtn.addEventListener('click', function() {
     startScreen.textContent = '';
+    console.log(multipleChoice.length);
+    showQuestion();
+
     var countdown = setInterval(function() {
         timer.textContent = timeLeft + " seconds remaining";
         timeLeft--;
@@ -36,3 +43,23 @@ startBtn.addEventListener('click', function() {
 });
 
 // 2. each question contains buttons for each answer
+function showQuestion() {
+    questionDiv.classList.remove("hide");
+    var optionsList = document.createElement("ul");
+    choices.append(optionsList);
+
+    var answerOptionsArray = Object.values(multipleChoice[0].options);
+    console.log(answerOptionsArray);
+    
+    for (var i = 0; i < multipleChoice.length; i++) {
+        for (var j = 0; j < 4; j++) {
+            console.log(answerOptionsArray[j]);
+            var option = answerOptionsArray[j];
+            var optionLi = document.createElement("li");
+            optionLi.textContent = option;
+            optionsList.append(optionLi);
+        }
+        question.textContent = multipleChoice[i].question;
+
+    }
+}
