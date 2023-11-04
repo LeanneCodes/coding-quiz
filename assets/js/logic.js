@@ -19,9 +19,13 @@ var choices = document.getElementById('choices');
 var optionBtns = document.querySelectorAll(".optBtn");
 var paraEl = document.createElement("p");
 var endScreen = document.getElementById("end-screen");
+var finalScore = document.getElementById("final-score");
+var initials = document.getElementById("initials");
+var submitBtn = document.getElementById("submit");
 
 // 1. a start button that when clicked, a timer starts and the first question appears
 var timeLeft = 1200;
+localStorage.clear();
 
 function countdown() {
     var countdownTimer = setInterval(function() {
@@ -38,6 +42,7 @@ function countdown() {
             timer.textContent = "Time's Up!";
             questionDiv.classList.add("hide");
             endScreen.classList.remove("hide");
+            endGame();
         }
 
         if (currentQuestionIndex === multipleChoice.length) {
@@ -46,6 +51,7 @@ function countdown() {
             timer.textContent = "Quiz Completed!";
             questionDiv.classList.add("hide");
             endScreen.classList.remove("hide");
+            endGame();
         }
     }, 1000);
 }
@@ -53,9 +59,7 @@ function countdown() {
 startBtn.addEventListener('click', function() {
     startScreen.textContent = '';
     console.log(multipleChoice.length);
-    
     countdown();
-
     showQuestionAndOptions();
 
 });
@@ -118,3 +122,8 @@ function deductTime() {
     timeLeft -= 10;
 };
 
+function endGame() {
+    finalScore.textContent = localStorage.getItem("Seconds Remaining");
+    initials = localStorage.setItem("Initials", initials.value);
+    console.log(initials);
+}
