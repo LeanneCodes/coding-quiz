@@ -25,7 +25,7 @@ var initials = document.getElementById("initials");
 var highscores = document.getElementById("highscores");
 
 // 1. a start button that when clicked, a timer starts and the first question appears
-var timeLeft = 120;
+var timeLeft = 20;
 
 function countdown() {
     var countdownTimer = setInterval(function() {
@@ -36,7 +36,7 @@ function countdown() {
             timer.textContent = timeLeft + " second remaining";
         }
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             clearInterval(countdownTimer);
             localStorage.setItem("Time's Up", timeLeft);
             timer.textContent = "Time's Up!";
@@ -130,7 +130,7 @@ function deductTime() {
 };
 
 function endGame() {
-    if (timeLeft === 0) {
+    if (timeLeft <= 0) {
         finalScore.textContent = localStorage.getItem("Time's Up");
     } else {
         finalScore.textContent = localStorage.getItem("Seconds Remaining");
