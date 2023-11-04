@@ -44,40 +44,47 @@ startBtn.addEventListener('click', function() {
 
 });
 
-// 2. each question contains buttons for each answer and when an option is clicked, the correct verdict is shown
+var currentQuestionIndex = 0;
+
+// 2a. each question contains buttons for each answer and when an option is clicked, the correct verdict is shown
 function showQuestionAndOptions() {
     questionDiv.classList.remove("hide");
     
-    for (var i = 0; i < multipleChoice.length; i++) {
-        question.textContent = multipleChoice[i].question;
-        var answerOptions = Object.values(multipleChoice[i].options);
-        var answer = multipleChoice[i].answer;
+    question.textContent = multipleChoice[currentQuestionIndex].question;
+    var answerOptions = multipleChoice[currentQuestionIndex].options;
+    var answer = multipleChoice[currentQuestionIndex].answer;
 
-        for (var j = 0; j < answerOptions.length; j++) {
-            console.log(answerOptions[j]);
-            var option = answerOptions[j];
-            var optionBtn = document.createElement("button");
-            optionBtn.textContent = option;
-            optionBtn.classList.add("optBtn");
-            choices.append(optionBtn);
+    choices.innerHTML = "";
+
+    for (var j = 0; j < answerOptions.length; j++) {
+        console.log(answerOptions[j]);
+        var option = answerOptions[j];
+        var optionBtn = document.createElement("button");
+        optionBtn.textContent = option;
+        optionBtn.classList.add("optBtn");
+        choices.append(optionBtn);
+    }
+
+    choices.addEventListener('click', function(event) {
+        console.log(event);
+        console.log(event.target.textContent);
+        if (event.target.textContent === answer) {
+            console.log("Correct!");
+            showCorrectVerdict();
+        } else {
+            console.log("Wrong!");
+            showIncorrectVerdict();
         }
 
-        console.log(answerOptions);
-        console.log(answer);
-
-        choices.addEventListener('click', function(event) {
-            console.log(event);
-            console.log(event.target.textContent);
-            if (event.target.textContent === answer) {
-                console.log("Correct!");
-                showCorrectVerdict();
-            } else {
-                console.log("Wrong!");
-                showIncorrectVerdict();
-            }
-        })
-    }
-};
+        currentQuestionIndex++;
+        if (currentQuestionIndex < multipleChoice.length) {
+            showQuestionAndOptions();
+        } else {
+            clearInterval(countdown);
+            timer.textContent = "Quiz Completed!";
+        }
+    });
+}
 
 // 3. when an answer is clicked, text on the html page displays whether that answer was right or wrong
 function showCorrectVerdict() {
