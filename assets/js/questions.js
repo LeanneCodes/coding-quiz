@@ -6,8 +6,8 @@ var multipleChoice = [
     },
     {
         question: "Question 2",
-        options: ["Desktop", "Mobile", "Web", "Server"],
-        answer: "Web"
+        options: ["opt1", "opt2", "opt3", "opt4"],
+        answer: "opt2"
     },
     {
         question: "Question 3",

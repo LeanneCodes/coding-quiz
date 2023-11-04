@@ -18,6 +18,7 @@ var question = document.getElementById('question-title');
 var choices = document.getElementById('choices');
 var optionBtns = document.querySelectorAll(".optBtn");
 var paraEl = document.createElement("p");
+var endScreen = document.getElementById("end-screen");
 
 // 1. a start button that when clicked, a timer starts and the first question appears
 var timeLeft = 1200;
@@ -38,7 +39,8 @@ startBtn.addEventListener('click', function() {
             clearInterval(countdown);
             localStorage.setItem("Time's Up", timeLeft);
             timer.textContent = "Time's Up!";
-            window.location.href = "./highscores.html";
+            questionDiv.classList.add("hide");
+            endScreen.classList.remove("hide");
         }
     }, 1000);
 
@@ -47,6 +49,25 @@ startBtn.addEventListener('click', function() {
 });
 
 var currentQuestionIndex = 0;
+var answer;
+
+var multipleChoice = [
+    {
+        question: "JavaScript is the programming language of the _____.",
+        options: ["Desktop", "Mobile", "Web", "Server"],
+        answer: "Web"
+    },
+    {
+        question: "Question 2",
+        options: ["opt1", "opt2", "opt3", "opt4"],
+        answer: "opt2"
+    },
+    {
+        question: "Question 3",
+        options: ["Desktop", "Mobile", "Web", "Server"],
+        answer: "Web"
+    }
+]
 
 // 2a. each question contains buttons for each answer and when an option is clicked, the correct verdict is shown
 function showQuestionAndOptions() {
@@ -54,40 +75,40 @@ function showQuestionAndOptions() {
     
     question.textContent = multipleChoice[currentQuestionIndex].question;
     var answerOptions = multipleChoice[currentQuestionIndex].options;
-    var answer = multipleChoice[currentQuestionIndex].answer;
+    answer = multipleChoice[currentQuestionIndex].answer;
 
     choices.innerHTML = "";
 
     for (var j = 0; j < answerOptions.length; j++) {
-        console.log(answerOptions[j]);
         var option = answerOptions[j];
         var optionBtn = document.createElement("button");
         optionBtn.textContent = option;
         optionBtn.classList.add("optBtn");
         choices.append(optionBtn);
     }
-
-    choices.addEventListener('click', function(event) {
-        console.log(event);
-        console.log(event.target.textContent);
-        if (event.target.textContent === answer) {
-            console.log("Correct!");
-            showCorrectVerdict();
-        } else {
-            console.log("Wrong!");
-            showIncorrectVerdict();
-        }
-
-        currentQuestionIndex++;
-        if (currentQuestionIndex <= multipleChoice.length) {
-            showQuestionAndOptions();
-        } else {
-            localStorage.setItem("Seconds Remaining", timeLeft);
-            timer.textContent = "Quiz Completed!";
-            window.location.href = "./highscores.html";
-        }
-    });
 }
+
+choices.addEventListener('click', function(event) {
+    if (event.target.textContent === answer) {
+        console.log("Correct!");
+        showCorrectVerdict();
+    } else {
+        console.log("Wrong!");
+        showIncorrectVerdict();
+        deductTime();
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < multipleChoice.length) {
+        showQuestionAndOptions();
+    } else {
+        localStorage.setItem("Seconds Remaining", timeLeft);
+        timer.textContent = "Quiz Completed!";
+        questionDiv.classList.add("hide");
+        endScreen.classList.remove("hide");
+    }
+});
 
 // 3. when an answer is clicked, text on the html page displays whether that answer was right or wrong
 function showCorrectVerdict() {
