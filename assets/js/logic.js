@@ -77,7 +77,7 @@ function showQuestionAndOptions() {
             }
         })
     }
-}
+};
 
 // 3. when an answer is clicked, text on the html page displays whether that answer was right or wrong
 function showCorrectVerdict() {
@@ -92,4 +92,10 @@ function showIncorrectVerdict() {
     questionDiv.append(paraEl);
     paraEl.textContent = "Wrong!";
     paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
-}
+    deductTime();
+};
+
+// 4. if the answer is wrong, 10 seconds is deducted from the timer
+function deductTime() {
+    timeLeft -= 10;
+};
