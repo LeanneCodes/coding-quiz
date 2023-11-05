@@ -99,7 +99,7 @@ function showQuestionAndOptions() {
     for (var i = 0; i < answerOptions.length; i++) {
         var option = answerOptions[i];
         var optionBtn = document.createElement("button");
-        optionBtn.textContent = option;
+        optionBtn.textContent = [i + 1] + ": " + option;
         optionBtn.setAttribute("style", "width: 100%; text-align: left;"); // styling the option buttons
         choices.append(optionBtn);
     }
