@@ -20,6 +20,11 @@ function showHighscores() {
         highscores.appendChild(scoreLi);
     }
 
+
+    if (highscoresArray.length === 0) {
+        notifyUser.textContent = "No highscores displayed.";
+        highscores.appendChild(notifyUser);
+    }
 }
 
 showHighscores();
