@@ -20,7 +20,6 @@ function showHighscores() {
         highscores.appendChild(scoreLi);
     }
 
-
     if (highscoresArray.length === 0) {
         notifyUser.textContent = "No highscores displayed.";
         highscores.appendChild(notifyUser);
@@ -30,6 +29,7 @@ function showHighscores() {
 showHighscores();
 
 clearScores.addEventListener('click', function() {
+    localStorage.clear();
     highscores.remove();
     notifyUser.textContent = "No highscores displayed.";
     highscoreWrapper.append(notifyUser);
