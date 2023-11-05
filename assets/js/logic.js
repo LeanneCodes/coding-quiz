@@ -110,7 +110,7 @@ function showCorrectVerdict() {
     paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
 
     setTimeout(function() {
-        paraEl.textContent = "";
+        paraEl.remove();
     }, 500);
 }
 
@@ -121,7 +121,7 @@ function showIncorrectVerdict() {
     deductTime();
     
     setTimeout(function() {
-        paraEl.textContent = "";
+        paraEl.remove();
     }, 500);
 };
 
