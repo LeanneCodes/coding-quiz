@@ -9,7 +9,7 @@
     7. the user can leave the game and come back and view their previous highscores
 */
 
-// declaring variables
+// creating variables from html elements
 var startBtn = document.getElementById('start');
 var startScreen = document.getElementById('start-screen');
 var timer = document.getElementById('time');
@@ -29,7 +29,7 @@ var highscores = document.getElementById("highscores");
     Completed!", otherwise it will say "Time's Up!". It will then display the end game
     screen, where the user can save their score.
 */
-var timeLeft = 20;
+var timeLeft = 100;
 
 function countdown() {
     var countdownTimer = setInterval(function() {
@@ -67,7 +67,7 @@ function countdown() {
 */
 startBtn.addEventListener('click', function() {
     startScreen.textContent = '';
-    console.log(multipleChoice.length);
+    console.log("Total questions: " + multipleChoice.length);
     countdown();
     showQuestionAndOptions();
 });
@@ -85,13 +85,13 @@ function showQuestionAndOptions() {
     questionDiv.classList.remove("hide");
     
     question.textContent = multipleChoice[currentQuestionIndex].question;
-    console.log(question.textContent);
+    console.log("Question: " + question.textContent);
 
     var answerOptions = multipleChoice[currentQuestionIndex].options;
-    console.log(answerOptions);
+    console.log("Answer options: " + answerOptions);
 
     answer = multipleChoice[currentQuestionIndex].answer;
-    console.log(answer);
+    console.log("Answer is: " + answer);
 
     choices.textContent = ""; // current choices div is empty and we will append the dynamic options to it
 
@@ -154,7 +154,7 @@ function deductTime() {
 // once the game ends, the user's score is displayed and they can save their score with their initials
 function endGame() {
     finalScore.textContent = timeLeft;
-    console.log(finalScore.textContent);
+    console.log("Final score is: " + finalScore.textContent);
 
     submitBtn.addEventListener('click', function() {
         initials = initials.value.trim(); // .trim() removes whitespace the user may have typed

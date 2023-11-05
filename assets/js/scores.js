@@ -8,6 +8,7 @@ var highscoreWrapper = document.querySelector(".wrapper");
 function showHighscores() {
     // for thr purpose of sorting highscores in descsending order, the array is converted back into an object.
     var highscoresArray = JSON.parse(localStorage.getItem("highscores")) || [];
+    console.log(highscoresArray);
 
     highscoresArray.sort(function(a, b) {
         return b.remainingSeconds - a.remainingSeconds;
@@ -20,16 +21,21 @@ function showHighscores() {
 
     // we only want to show the top 10 scores, so we use the slice method
     var displayedHighscores = highscoresArray.slice(0, 10);
+    console.log(displayedHighscores);
 
     // if the current length of highscores is less than 10, a new score will be appended to the list
     for (var i = 0; i < displayedHighscores.length; i++) {
         var score = displayedHighscores[i];
+        console.log(score);
+
         var scoreLi = document.createElement("li");
         scoreLi.textContent = score.initials + " - " + score.remainingSeconds;
+        console.log(scoreLi.textContent);
+
         highscores.appendChild(scoreLi);
     };
 
-    console.log(displayedHighscores.length);
+    console.log("Number of highscores displayed: " + displayedHighscores.length);
 };
 
 showHighscores();
