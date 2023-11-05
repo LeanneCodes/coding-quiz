@@ -12,7 +12,7 @@ All scores are saved to the user's local storage. If they no longer want to see 
 
 ## Application Appearance
 
-![Quiz](assets/images/quiz-image.png)
+![Quiz](assets/images/coding-quiz.png)
 
 View quiz [here](https://leannecodes.github.io/coding-quiz/index.html)
 
