@@ -1,11 +1,11 @@
 var multipleChoice = [
     {
-        question: "JavaScript is the programming language of the _____.",
+        question: "1. JavaScript is the programming language of the _____.",
         options: ["Desktop", "Mobile", "Web", "Server"],
         answer: "Web"
     },
     {
-        question: "Which of the following statement(s) is true about JavaScript?",
+        question: "2. Which of the following statement(s) is true about JavaScript?",
         options: [
             "It is a scripting language used to make the website interactive",
             "It is an advanced version of Java for Desktop and Mobile application development",
@@ -15,7 +15,7 @@ var multipleChoice = [
         answer: "It is a scripting language used to make the website interactive"
     },
     {
-        question: "Which symbol is used to separate JavaScript statements?",
+        question: "3. Which symbol is used to separate JavaScript statements?",
         options: [
             "Comma (,)",
             "Colon (:)",
@@ -25,7 +25,7 @@ var multipleChoice = [
         answer: "Semicolon (;)"
     },
     {
-        question: "JavaScript ignores?",
+        question: "4. JavaScript ignores?",
         options: [
             "newlines",
             "tabs",
@@ -35,7 +35,7 @@ var multipleChoice = [
         answer: "All of the above"
     },
     {
-        question: "Which is the correct syntax to call an external JavaScript file in the current HTML document?",
+        question: "5. Which is the correct syntax to call an external JavaScript file in the current HTML document?",
         options: [
             "<script src=\"jsfile.js\"></script>",
             "<script href=\"jsfile.js\"></script>",
@@ -45,7 +45,7 @@ var multipleChoice = [
         answer: "<script src=\"jsfile.js\"></script>"
     },
     {
-        question: "Which JavaScript method is used to access an HTML element by id?",
+        question: "6. Which JavaScript method is used to access an HTML element by id?",
         options: [
             "getElementById()",
             "getElement(id)",
@@ -55,7 +55,7 @@ var multipleChoice = [
         answer: "getElementById(id)"
     },
     {
-        question: "Which JavaScript method is used to write into an alert box?",
+        question: "7. Which JavaScript method is used to write into an alert box?",
         options: [
             "window.alertHTML()",
             "window.alert()",
@@ -65,7 +65,7 @@ var multipleChoice = [
         answer: "window.alert()"
     },
     {
-        question: "In JavaScript, single line comment begins with ___?",
+        question: "8. In JavaScript, single line comment begins with ___?",
         options: [
             "#",
             "/*",
@@ -75,7 +75,7 @@ var multipleChoice = [
         answer: "//"
     },
     {
-        question: "What is the default value of an uninitialized variable?",
+        question: "9. What is the default value of an uninitialized variable?",
         options: [
             "0",
             "undefined",
@@ -85,7 +85,7 @@ var multipleChoice = [
         answer: "undefined"
     },
     {
-        question: "JavaScript arrays are written with _____?",
+        question: "10. JavaScript arrays are written with _____?",
         options: [
             "round brackets ()",
             "curly brackets {}",
