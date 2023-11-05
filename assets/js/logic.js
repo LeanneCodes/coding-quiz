@@ -22,6 +22,7 @@ var finalScore = document.getElementById("final-score");
 var submitBtn = document.getElementById("submit");
 var initials = document.getElementById("initials");
 var highscores = document.getElementById("highscores");
+var feedback = document.getElementById("feedback");
 
 /*
     The user will have 100 seconds to complete the quiz before the timer runs out. If
@@ -126,23 +127,25 @@ choices.addEventListener('click', function(event) {
 
 // when an answer is clicked, text on the html page displays whether that answer was right or wrong for half a second
 function showCorrectVerdict() {
-    questionDiv.append(paraEl);
+    feedback.append(paraEl);
+    feedback.classList.remove("hide");
     paraEl.textContent = "Correct!";
-    paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
 
     setTimeout(function() {
-        paraEl.remove(); // the text and styling is removed from the page
+        feedback.classList.add("hide"); // the styling is removed from the page
+        paraEl.remove(); // the text is removed from the page
     }, 500);
 };
 
 function showIncorrectVerdict() {
-    questionDiv.append(paraEl);
+    feedback.append(paraEl);
+    feedback.classList.remove("hide");
     paraEl.textContent = "Wrong!";
-    paraEl.setAttribute("style", "color: grey; font-style: italic; border-top: 1px solid grey; padding-top: 5px;");
     deductTime();
     
     setTimeout(function() {
-        paraEl.remove(); // the text and styling is removed from the page
+        feedback.classList.add("hide"); // the styling is removed from the page
+        paraEl.remove(); // the text is removed from the page
     }, 500);
 };
 
