@@ -25,7 +25,7 @@ var initials = document.getElementById("initials");
 var highscores = document.getElementById("highscores");
 
 // 1. a start button that when clicked, a timer starts and the first question appears
-var timeLeft = 100;
+var timeLeft = 5;
 
 function countdown() {
     var countdownTimer = setInterval(function() {

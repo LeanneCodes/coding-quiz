@@ -4,6 +4,7 @@ var notifyUser = document.createElement("p");
 var clearScores = document.getElementById("clear");
 var highscoreWrapper = document.querySelector(".wrapper");
 
+
 function showHighscores() {
     var highscoresArray = JSON.parse(localStorage.getItem("highscores")) || [];
 
@@ -13,12 +14,16 @@ function showHighscores() {
 
     highscores.innerHTML = "";
 
-    for (var i = 0; i < highscoresArray.length; i++) {
-        var score = highscoresArray[i];
+    var displayedHighscores = highscoresArray.slice(0, 10);
+
+    for (var i = 0; i < displayedHighscores.length; i++) {
+        var score = displayedHighscores[i];
         var scoreLi = document.createElement("li");
         scoreLi.textContent = score.initials + " - " + score.remainingSeconds;
         highscores.appendChild(scoreLi);
     }
+
+    console.log(displayedHighscores.length);
 
     if (highscoresArray.length === 0) {
         notifyUser.textContent = "No highscores displayed.";
