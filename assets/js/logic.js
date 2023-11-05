@@ -102,12 +102,14 @@ function showQuestionAndOptions() {
         optionBtn.textContent = [i + 1] + ": " + option; // adds numbering to each option
         optionBtn.setAttribute("style", "width: 100%; text-align: left;"); // styling the option buttons
         choices.append(optionBtn);
+        console.log(optionBtn);
     }
 };
 
 // if the user's answer is correct, the show correct verdict function will run, if not the incorrect function will
 choices.addEventListener('click', function(event) {
-    if (event.target.textContent === answer) {
+    if (event.target.textContent.slice(3) === answer) {
+        console.log(event.target.textContent.slice(3));
         console.log("Correct!");
         showCorrectVerdict();
     } else {
